@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    initialRoute:'login',
+    initialRoute: 'login',
     routes: {
-      'login':(context)  => const login(),
+      'login': (context) => const Login(),
+      'registro': (context) => const Registro(),
     },
-  )
-  );
+  ));
 }
 
 // ignore: must_be_immutable
@@ -98,16 +96,17 @@ class _FormularioState extends State<Formulario> {
   }
 }
 
-class login extends StatefulWidget {
-  const login({Key? key}) : super(key: key);
+class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
 
   @override
-  State<login> createState() => _Loginpage();
+  State<Login> createState() => _LoginPage();
 }
 
-class _Loginpage extends State<login> {
+class _LoginPage extends State<Login> {
   TextEditingController usuario = TextEditingController();
   TextEditingController senha = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -133,7 +132,7 @@ class _Loginpage extends State<login> {
                     right: 35,
                     left: 35),
                 child: Column(
-                  children: [ 
+                  children: [
                     TextFormField(
                       controller: usuario,
                       decoration: const InputDecoration(
@@ -160,24 +159,28 @@ class _Loginpage extends State<login> {
                           radius: 25,
                           backgroundColor: Color.fromARGB(255, 121, 137, 224),
                           child: IconButton(
-                              onPressed: () {
-                                if (usuario.text != "scania" || this.senha.text != "jeferson"){
-                                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text('Usuário ou senha inválida'),
-                          backgroundColor: Colors.red,
-                        ));}
-                        },
-                              icon: const Icon(Icons.arrow_forward, color:Colors.white)), 
+                            onPressed: () {
+                              if (usuario.text != "scania" || senha.text != "jeferson") {
+                                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                  content: Text('Usuário ou senha inválida'),
+                                  backgroundColor: Colors.red,
+                                ));
+                              }
+                            },
+                            icon: const Icon(Icons.arrow_forward, color: Colors.white),
+                          ),
                         ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 40,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                      ],
+                    const SizedBox(height: 20),
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pushNamed(context, 'registro');
+                      },
+                      child: const Text(
+                        'Não tem uma conta? Registre-se',
+                        style: TextStyle(color: Color.fromARGB(255, 121, 137, 224)),
+                      ),
                     ),
                   ],
                 ),
@@ -190,3 +193,57 @@ class _Loginpage extends State<login> {
   }
 }
 
+class Registro extends StatefulWidget {
+  const Registro({Key? key}) : super(key: key);
+
+  @override
+  State<Registro> createState() => _RegistroState();
+}
+
+class _RegistroState extends State<Registro> {
+  TextEditingController usuario = TextEditingController();
+  TextEditingController senha = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Registro'),
+        backgroundColor: Color.fromARGB(255, 121, 137, 224),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            TextField(
+              controller: usuario,
+              decoration: const InputDecoration(
+                labelText: 'Usuário',
+              ),
+            ),
+            const SizedBox(height: 20),
+            TextField(
+              controller: senha,
+              obscureText: true,
+              decoration: const InputDecoration(
+                labelText: 'Senha',
+              ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                // Aqui você pode adicionar a lógica para registrar o usuário
+                debugPrint('Usuário: ${usuario.text}');
+                debugPrint('Senha: ${senha.text}');
+              },
+              child: const Text('Registrar'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromARGB(255, 121, 137, 224),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
