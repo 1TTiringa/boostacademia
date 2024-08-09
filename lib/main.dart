@@ -19,97 +19,111 @@ class Login extends StatefulWidget {
 }
 
 class _LoginPage extends State<Login> {
-  TextEditingController usuario = TextEditingController();
-  TextEditingController senha = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController senhaController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF0f0940), // Cor de fundo
-      body: Stack(
-        children: [
-          Container(
-            padding: const EdgeInsets.only(left: 35, top: 130),
-            child: const Text(
-              'Boost Academia',
-              style: TextStyle(
-                color: Colors.white, // Texto branco para contraste
-                fontSize: 45,
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'BOOST GYM',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 2.0,
+                ),
               ),
-            ),
-          ),
-          SingleChildScrollView(
-            child: Container(
-              padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.4,
-                  right: 35,
-                  left: 35),
-              child: Column(
-                children: [
-                  TextFormField(
-                    controller: usuario,
-                    style: const TextStyle(color: Colors.white), // Texto branco
-                    decoration: const InputDecoration(
-                      labelText: "Email",
-                      labelStyle: TextStyle(color: Colors.white), // Label branco
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white), // Borda branca
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextFormField(
-                    controller: senha,
-                    obscureText: true,
-                    style: const TextStyle(color: Colors.white), // Texto branco
-                    decoration: const InputDecoration(
-                      hintText: "Senha",
-                      hintStyle: TextStyle(color: Colors.white), // Hint branco
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white), // Borda branca
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      CircleAvatar(
-                        radius: 25,
-                        backgroundColor: Color.fromARGB(255, 255, 255, 255),
-                        child: IconButton(
-                          onPressed: () {
-                            if (usuario.text != "scania" || senha.text != "jeferson") {
-                              ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                                content: Text('Usuário ou senha inválida'),
-                                backgroundColor: Colors.red,
-                              ));
-                            }
-                          },
-                          icon: const Icon(Icons.arrow_forward, color: Color.fromARGB(255, 0, 0, 0)),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 20),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, 'registro');
-                    },
-                    child: const Text(
-                      'Não tem uma conta? Registre-se',
-                      style: TextStyle(color: Colors.white), // Texto branco
-                    ),
-                  ),
-                ],
+              const Text(
+                'Sua academia em casa!',
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 18,
+                ),
               ),
-            ),
+              const SizedBox(height: 40),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Login:',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 10),
+              TextField(
+                controller: emailController,
+                style: const TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  hintText: 'E-mail',
+                  hintStyle: const TextStyle(color: Colors.white70),
+                  filled: true,
+                  fillColor: const Color(0xFF1e1a54),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                controller: senhaController,
+                obscureText: true,
+                style: const TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  hintText: 'Senha',
+                  hintStyle: const TextStyle(color: Colors.white70),
+                  filled: true,
+                  fillColor: const Color(0xFF1e1a54),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 30),
+              ElevatedButton(
+                onPressed: () {
+                  // Lógica de login
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 50),
+                  backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+                child: const Text(
+                  'Continuar',
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+              const SizedBox(height: 20),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, 'registro');
+                },
+                child: const Text(
+                  'Não é cadastrado(a) no BOOST GYM?\nCriar conta',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
@@ -123,73 +137,127 @@ class Registro extends StatefulWidget {
 }
 
 class _RegistroState extends State<Registro> {
-  TextEditingController nomeCompleto = TextEditingController();
-  TextEditingController usuario = TextEditingController();
-  TextEditingController senha = TextEditingController();
+  TextEditingController nomeCompletoController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController senhaController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF0f0940), // Cor de fundo
-      appBar: AppBar(
-        title: const Text('Registro'),
-        backgroundColor: Color.fromARGB(255, 255, 255, 255),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextField(
-              controller: nomeCompleto,
-              style: const TextStyle(color: Colors.white), // Texto branco
-              decoration: const InputDecoration(
-                labelText: 'Nome Completo',
-                labelStyle: TextStyle(color: Colors.white), // Label branco
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white), // Borda branca
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                'BOOST GYM',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 40,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 2.0,
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-            TextField(
-              controller: usuario,
-              style: const TextStyle(color: Colors.white), // Texto branco
-              decoration: const InputDecoration(
-                labelText: 'Email',
-                labelStyle: TextStyle(color: Colors.white), // Label branco
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white), // Borda branca
+              const Text(
+                'Sua academia em casa!',
+                style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 18,
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-            TextField(
-              controller: senha,
-              obscureText: true,
-              style: const TextStyle(color: Colors.white), // Texto branco
-              decoration: const InputDecoration(
-                labelText: 'Senha',
-                labelStyle: TextStyle(color: Colors.white), // Label branco
-                enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white), // Borda branca
+              const SizedBox(height: 40),
+              const Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Criar conta:',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                // Aqui você pode adicionar a lógica para registrar o usuário
-                debugPrint('Nome Completo: ${nomeCompleto.text}');
-                debugPrint('Usuário: ${usuario.text}');
-                debugPrint('Senha: ${senha.text}');
-                Navigator.pop(context); // Volta para a página de login
-              },
-              child: const Text('Registrar'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color.fromARGB(255, 255, 255, 255),
+              const SizedBox(height: 10),
+              TextField(
+                controller: nomeCompletoController,
+                style: const TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  hintText: 'Nome Completo',
+                  hintStyle: const TextStyle(color: Colors.white70),
+                  filled: true,
+                  fillColor: const Color(0xFF1e1a54),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
               ),
-            ),
-          ],
+              const SizedBox(height: 20),
+              TextField(
+                controller: emailController,
+                style: const TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  hintText: 'E-mail',
+                  hintStyle: const TextStyle(color: Colors.white70),
+                  filled: true,
+                  fillColor: const Color(0xFF1e1a54),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 20),
+              TextField(
+                controller: senhaController,
+                obscureText: true,
+                style: const TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  hintText: 'Senha',
+                  hintStyle: const TextStyle(color: Colors.white70),
+                  filled: true,
+                  fillColor: const Color(0xFF1e1a54),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(30),
+                    borderSide: BorderSide.none,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 30),
+              ElevatedButton(
+                onPressed: () {
+                  // Lógica de registro
+                  Navigator.pop(context);
+                },
+                style: ElevatedButton.styleFrom(
+                  padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 50),
+                  backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+                child: const Text(
+                  'Continuar',
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+              const SizedBox(height: 20),
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text(
+                  'Já tem conta no BOOST GYM?\nEntre Aqui',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 14,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
