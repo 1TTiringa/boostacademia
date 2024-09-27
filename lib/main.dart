@@ -140,8 +140,9 @@ class RegistroPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFF0f0940),
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: const Color(0xFF1e1a54),
-        title: const Text('Registro'),
+        title: const Text('Registro',style: TextStyle(color:Colors.white))
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -250,9 +251,9 @@ class TreinosPage extends StatelessWidget {
                     style: const TextStyle(color: Colors.white),
                     decoration: InputDecoration(
                       hintText: 'Pesquisar treinos',
-                      hintStyle: const TextStyle(color: Colors.white70),
+                      hintStyle: const TextStyle(color: Color.fromARGB(179, 0, 0, 0)),
                       filled: true,
-                      fillColor: const Color(0xFF1e1a54),
+                      fillColor: Color.fromARGB(255, 255, 255, 255),
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(30),
                         borderSide: BorderSide.none,
@@ -434,8 +435,9 @@ class ExerciseDetailPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFF0f0940),
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: const Color(0xFF1e1a54),
-        title: Text(treinoNome),
+        title: Text(treinoNome, style: TextStyle(color:Colors.white),),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -484,7 +486,7 @@ class ExerciseDetailPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(30),
                           ),
                         ),
-                        child: const Text('Começar treino!'),
+                        child: const Text('Começar treino!', style: TextStyle(color:Colors.white),),
                       ),
                     ),
                   );
@@ -519,8 +521,9 @@ class TutorialPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFF0f0940),
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
         backgroundColor: const Color(0xFF1e1a54),
-        title: Text(exercicioNome),
+        title: Text(exercicioNome, style: TextStyle(color:Colors.white)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -550,7 +553,7 @@ class TutorialPage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(30),
                           ),
                         ),
-                        child: const Text('FINALIZAR'),
+                        child: const Text('FINALIZAR', style: TextStyle(color:Colors.white),),
                       ),
             ],
           ),
